@@ -3,7 +3,7 @@ package net.bestofcode.Facebook.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FacebookController {
@@ -13,8 +13,8 @@ public class FacebookController {
         return "index";
     }
 
-    @GetMapping("/search/{param}")
-    public String search(@PathVariable String param, Model model) {
+    @GetMapping("/search")
+    public String search(@RequestParam String param, Model model) {
         model.addAttribute("searchparam", param);
         return "search";
     }
