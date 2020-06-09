@@ -1,11 +1,11 @@
 package net.bestofcode.Facebook.model;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
 import net.bestofcode.Facebook.model.profile.Address;
 import net.bestofcode.Facebook.model.profile.PersonalInformation;
 import net.bestofcode.Facebook.model.profile.Username;
 
-@AllArgsConstructor
+@Data
 public class User {
 
     Long id;
