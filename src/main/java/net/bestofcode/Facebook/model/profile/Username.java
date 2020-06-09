@@ -1,11 +1,18 @@
 package net.bestofcode.Facebook.model.profile;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@AllArgsConstructor
-@Getter
-public class Username {
+public class Username implements Credential{
 
-    String username;
+    private String username;
+
+    public Username(String error) {
+        this.username = error;
+    }
+
+    @Override
+    public String getValue() {
+        return username;
+    }
 }
