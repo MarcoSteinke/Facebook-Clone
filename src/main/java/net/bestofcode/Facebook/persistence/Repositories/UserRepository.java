@@ -1,7 +1,9 @@
 package net.bestofcode.Facebook.persistence.Repositories;
 
-import net.bestofcode.Facebook.model.User;
+import net.bestofcode.Facebook.persistence.DTO.UserDTO;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+@Repository
+public interface UserRepository extends CrudRepository<UserDTO, String> {
 }
