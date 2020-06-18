@@ -1,12 +1,17 @@
 package net.bestofcode.Facebook.persistence.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-@Data
+@AllArgsConstructor
+@Getter
+@NoArgsConstructor
 public class UserDTO {
 
     @Id
@@ -15,4 +20,7 @@ public class UserDTO {
     String forename;
     String familyname;
     String email;
+    String city;
+    String street;
+    Integer houseNumber;
 }

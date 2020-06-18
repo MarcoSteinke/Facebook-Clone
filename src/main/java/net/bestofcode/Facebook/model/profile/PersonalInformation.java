@@ -9,5 +9,5 @@ public class PersonalInformation {
 
     String forename;
     String familyname;
-    Integer age;
+
 }

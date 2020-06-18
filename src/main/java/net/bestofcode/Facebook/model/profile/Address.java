@@ -10,4 +10,10 @@ public class Address {
     String street;
     Integer houseNumber;
     String city;
+
+    public Address(String street, int houseNumber, String city) {
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.city = city;
+    }
 }
