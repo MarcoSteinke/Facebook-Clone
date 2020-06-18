@@ -1,4 +1,5 @@
 # Facebook Clone
+
 This project's purpose is to learn more about Spring Boot.
 
 ### This project has no context to the real Facebook company
