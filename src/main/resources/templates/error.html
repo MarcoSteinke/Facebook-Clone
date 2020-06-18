@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Facebook Clone</title>
+</head>
+<style>
+    h4 {
+        color: #0e385f;
+    }
+
+    div.check-row {
+        margin-left: 6px;
+    }
+
+    div.form-item {
+        float: left;
+        border-radius: 6px;
+        margin: 8px;
+    }
+
+    div.form-item>input {
+        border-radius: 6px;
+        border: 1px solid lightgray;
+        padding: 6px;
+    }
+
+
+
+    input.form-item {
+        border-radius: 6px;
+        border: 1px solid lightgray;
+        padding: 6px;
+        width: 392px;
+        margin-left: 8px;
+    }
+
+    div.col {
+        margin: 20px;
+    }
+
+    div.right {
+        text-align: left;
+    }
+
+    div.left {
+        text-align: right;
+    }
+
+    html {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    nav {
+        background: #4267b2;
+        width: 100%;
+        margin: 0;
+        display: flex;
+        margin-bottom: 30px;
+    }
+
+    form.search-form {
+        padding: 18px;
+        height: 12px;
+        width: 60px;
+    }
+</style>
+<body>
+<nav>
+    <h2 style="color: white; padding: 12px 12px 12px 16px;">facebook</h2>
+    <form th:if="${login}" class="search-form" method="get" action="/search">
+        <input style="width: 140px; height: 32px; padding: 12px; border-radius: 7px; border: 1px solid gray;" type="text" name="param" minlength="2" required placeholder="Search a user">
+    </form>
+</nav>
+<br>
+<div style="text-align: center;">
+    <h5>Oops. Looks like something went wrong.</h5>
+    <button class="btn btn-info" onclick="window.history.back()">back</button>
+</div>
+</body>
+</html>
