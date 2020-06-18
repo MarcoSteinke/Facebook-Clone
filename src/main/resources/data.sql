@@ -1,0 +1,2 @@
+INSERT INTO user (id, username, password, salt, forename, familyname, email, city, street, house_number) VALUES
+  (0, 'jodo123', 'password', '1234', 'John', 'Doe', 'jodo123@gmail.com', 'New York', 'Times Square', 69);
