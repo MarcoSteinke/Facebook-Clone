@@ -21,7 +21,7 @@ public class DatabaseService {
         this.userDTOMapper = new UserDTOMapper();
     }
 
-    User getFromDB(Username username) {
+    public User getFromDB(Username username) {
         Optional<UserDTO> user = this.userRepository.findById(username.getValue());
 
         return this.userDTOMapper.mapUserDTOToUser(user.get());

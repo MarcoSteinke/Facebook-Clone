@@ -9,12 +9,15 @@ import net.bestofcode.Facebook.service.DatabaseService;
 import net.bestofcode.Facebook.service.RegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.List;
 
 @Controller
+@SessionScope
 public class FacebookRegistrationController {
 
     RegistrationService registrationService;
@@ -34,9 +37,12 @@ public class FacebookRegistrationController {
         if(!registrationSuccess)
             return "redirect:/error";
 
-        System.out.println("success");
-        model.addAttribute("login", true);
-        model.addAllAttributes(List.of(username, password, email));
-        return "redirect:/";
+
+        return "redirect:/registration/success";
     }
+
+    /*@ModelAttribute("account")
+    public User userAccount(Model model) {
+
+    }*/
 }
