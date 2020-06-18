@@ -27,15 +27,16 @@ public class FacebookRegistrationController {
 
     @PostMapping("/registration")
     public String register(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String email) {
-        model.addAllAttributes(List.of(username, password, email));
-        model.addAttribute("login", true);
         FormData formData = new FormData(new Username(username), new Email(email), new Password(password));
         boolean registrationSuccess = this.registrationService.registerUser(formData);
         System.out.println(username + ", " + password + ", " + email);
 
         if(!registrationSuccess)
-            return "redirect:/";
+            return "redirect:/error";
 
-        return "landing";
+        System.out.println("success");
+        model.addAttribute("login", true);
+        model.addAllAttributes(List.of(username, password, email));
+        return "redirect:/";
     }
 }
