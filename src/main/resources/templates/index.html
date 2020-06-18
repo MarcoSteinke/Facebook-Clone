@@ -77,15 +77,38 @@
     height: 12px;
     width: 60px;
   }
+
+  form.login-form {
+    padding: 16px 12px 12px 16px;
+  }
+
+  form.login-form>input {
+    float: left;
+  }
 </style>
+<script>
+  function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+    }
+  }
+</script>
 <body>
 <nav>
   <h2 style="color: white; padding: 12px 12px 12px 16px;">facebook</h2>
   <form th:if="${login}" class="search-form" method="get" action="/search">
     <input style="width: 140px; height: 32px; padding: 12px; border-radius: 7px; border: 1px solid gray;" type="text" name="param" minlength="2" required placeholder="Search a user">
   </form>
+  <form class="login-form" method="post" action="/login">
+    <input name="loginmail" maxlength="40" required placeholder="Enter Email">
+    <input name="loginpassword" maxlength="20" required placeholder="Enter Password">
+    <input type="submit" value="Login">
+  </form>
 </nav>
 <br>
+<button onclick="this.style.display = 'none'" onload="wait(4000); this.style.display = 'none'" class="btn btn-success" id="success" style="width: 100%;" th:if="${success}">You have successfully registered and may now login.</button>
 <div th:unless="${login}" class="row">
   <div class="col left">
     <h4>Facebook connects you with your friends.</h4>
@@ -98,14 +121,14 @@
       <br>
       <div class="row">
         <div class="form-item">
-          <input type="text" name="username" id="username" maxlength="20" required placeholder="Username">
+          <input type="text" name="username" id="username" maxlength="20" minlength="5" required placeholder="Username">
         </div>
         <div class="form-item">
-          <input type="password" name="password" id="password" maxlength="20" required placeholder="Password">
+          <input type="password" name="password" id="password" maxlength="20" minlength="8" required placeholder="Password">
         </div>
       </div>
       <div class="row">
-        <input type="email" class="form-item" name="email" id="email" maxlength="20" required placeholder="Email Address">
+        <input type="email" class="form-item" name="email" id="email" maxlength="40" required placeholder="Email Address">
       </div>
       <br>
       <div class="row check-row">
