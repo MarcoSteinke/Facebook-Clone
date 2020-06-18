@@ -17,6 +17,8 @@ public class UserDTO {
     @Id
     Long id;
     String username;
+    String password;
+    String salt;
     String forename;
     String familyname;
     String email;
