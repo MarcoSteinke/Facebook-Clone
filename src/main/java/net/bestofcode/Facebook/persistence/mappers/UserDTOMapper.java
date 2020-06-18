@@ -12,4 +12,20 @@ public class UserDTOMapper {
         User user = User.create(dto.getId(), dto.getUsername(), dto.getPassword(), UUID.fromString(dto.getSalt()), dto.getEmail(), dto.getForename(), dto.getFamilyname(), dto.getStreet(), dto.getCity(), dto.getHouseNumber());
         return user;
     }
+
+    public UserDTO mapUserToUserDTO(User user) {
+        UserDTO userDTO = new UserDTO(
+                user.getId(),
+                user.getUsername().getValue(),
+                user.getPassword().getEncryptedPassword(),
+                user.getPassword().getSalt().toString(),
+                user.getPersonalInformation().getForename(),
+                user.getPersonalInformation().getFamilyname(),
+                user.getEmail().getAddress(),
+                user.getAddress().getCity(),
+                user.getAddress().getStreet(),
+                user.getAddress().getHouseNumber());
+
+        return userDTO;
+    }
 }
