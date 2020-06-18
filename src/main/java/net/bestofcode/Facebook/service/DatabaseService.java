@@ -27,4 +27,14 @@ public class DatabaseService {
         return this.userDTOMapper.mapUserDTOToUser(user.get());
     }
 
+    boolean insertIntoDB(User user) {
+        UserDTO userDTO = this.userDTOMapper.mapUserToUserDTO(user);
+        try {
+            this.userRepository.save(userDTO);
+            return true;
+        } catch(IllegalArgumentException illegalArgumentException) {
+            return false;
+        }
+    }
+
 }
