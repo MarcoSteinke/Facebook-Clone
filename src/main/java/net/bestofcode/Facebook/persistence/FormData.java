@@ -31,7 +31,7 @@ public class FormData {
     }
 
     public boolean isValid() {
-        return !this.username.equals("error");
+        return this.username.equals("error");
     }
 
     private void createErrorFormData() {

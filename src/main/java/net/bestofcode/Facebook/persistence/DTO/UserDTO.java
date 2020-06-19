@@ -15,9 +15,9 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class UserDTO {
 
-    @Id
-    @GeneratedValue
+
     Long id;
+    @Id
     String username;
     String password;
     String salt;

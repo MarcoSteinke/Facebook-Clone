@@ -40,7 +40,7 @@ public class UserDTOMapper {
                     user.getPassword().getSalt().toString(),
                     "",
                     "",
-                    "",
+                    user.getEmail().getAddress(),
                     "",
                     "",
                     -1);
