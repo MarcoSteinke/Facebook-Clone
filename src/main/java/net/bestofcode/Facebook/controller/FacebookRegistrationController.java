@@ -32,12 +32,12 @@ public class FacebookRegistrationController {
     public String register(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String email) {
         FormData formData = new FormData(new Username(username), new Email(email), new Password(password));
         boolean registrationSuccess = this.registrationService.registerUser(formData);
-        System.out.println(username + ", " + password + ", " + email);
+
 
         if(!registrationSuccess)
             return "redirect:/error";
 
-
+        System.out.println(username + ", " + password + ", " + email);
         return "redirect:/registration/success";
     }
 

@@ -1,6 +1,7 @@
 package net.bestofcode.Facebook;
 
 import net.bestofcode.Facebook.model.User;
+import net.bestofcode.Facebook.model.profile.Email;
 import net.bestofcode.Facebook.model.profile.Password;
 import net.bestofcode.Facebook.model.profile.Username;
 import net.bestofcode.Facebook.persistence.FormData;
@@ -67,5 +68,14 @@ class FacebookPersistenceTests {
 
 		assertEquals("", formData.isValid(), false);
 	}
+
+	@Test
+	void validFormDataIsValid() {
+		FormData formData = new FormData(new Username("Marco"), new Email("q@gmail.com"), new Password("password"));
+
+		assertEquals("", formData.isValid(), true);
+	}
+
+
 
 }

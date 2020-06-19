@@ -1,9 +1,6 @@
 package net.bestofcode.Facebook.persistence;
 
-import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.bestofcode.Facebook.model.profile.Credential;
 import net.bestofcode.Facebook.model.profile.Email;
 import net.bestofcode.Facebook.model.profile.Password;
 import net.bestofcode.Facebook.model.profile.Username;
@@ -17,7 +14,7 @@ public class FormData {
     Email email;
     Password password;
 
-    public FormData(@NotNull Username username, @NotNull Email email, @NotNull Password password) {
+    public FormData(Username username, Email email, Password password) {
 
         if(username == null || password == null || email == null) {
 
@@ -31,10 +28,11 @@ public class FormData {
     }
 
     public boolean isValid() {
-        return this.username.equals("error");
+        return !this.username.getValue().equals("error");
     }
 
     private void createErrorFormData() {
         this.username = new Username("error");
+        System.out.println("invalid FormData");
     }
 }
