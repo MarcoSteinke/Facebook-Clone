@@ -4,7 +4,8 @@ import net.bestofcode.Facebook.model.User;
 import net.bestofcode.Facebook.model.profile.Email;
 import net.bestofcode.Facebook.model.profile.Password;
 import net.bestofcode.Facebook.model.profile.Username;
-import net.bestofcode.Facebook.persistence.FormData;
+import net.bestofcode.Facebook.persistence.LoginFormData;
+import net.bestofcode.Facebook.persistence.RegistrationFormData;
 import net.bestofcode.Facebook.service.DatabaseService;
 import net.bestofcode.Facebook.service.RegistrationService;
 import org.junit.jupiter.api.Test;
@@ -64,16 +65,32 @@ class FacebookPersistenceTests {
 
 	@Test
 	void invalidFormDataIsInvalid() {
-		FormData formData = new FormData(null, null, null);
+		RegistrationFormData registrationFormData = new RegistrationFormData(null, null, null);
 
-		assertEquals("", formData.isValid(), false);
+		assertEquals("", registrationFormData.isValid(), false);
 	}
 
 	@Test
 	void validFormDataIsValid() {
-		FormData formData = new FormData(new Username("Marco"), new Email("q@gmail.com"), new Password("password"));
+		RegistrationFormData registrationFormData = new RegistrationFormData(new Username("Marco"), new Email("q@gmail.com"), new Password("password"));
 
-		assertEquals("", formData.isValid(), true);
+		assertEquals("", registrationFormData.isValid(), true);
+	}
+
+	@Test
+	void invalidLoginFormDataIsInvalid() {
+		UUID uuid = UUID.randomUUID();
+		LoginFormData loginFormData = new LoginFormData(null, new Password("password", uuid));
+
+		assertEquals("", loginFormData.isValid(), false);
+	}
+
+	@Test
+	void validLoginFormDataIsValid() {
+		UUID uuid = UUID.randomUUID();
+		LoginFormData loginFormData = new LoginFormData(new Email("test@gmail.com"), new Password("password", uuid));
+
+		assertEquals("", loginFormData.isValid(), true);
 	}
 
 
