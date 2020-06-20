@@ -2,7 +2,7 @@ package net.bestofcode.Facebook.service;
 
 import lombok.AllArgsConstructor;
 import net.bestofcode.Facebook.model.User;
-import net.bestofcode.Facebook.persistence.RegistrationFormData;
+import net.bestofcode.Facebook.persistence.forms.RegistrationFormData;
 import org.springframework.stereotype.Service;
 
 @Service

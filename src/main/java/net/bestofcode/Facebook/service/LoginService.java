@@ -2,8 +2,7 @@ package net.bestofcode.Facebook.service;
 
 import lombok.AllArgsConstructor;
 import net.bestofcode.Facebook.model.User;
-import net.bestofcode.Facebook.model.profile.Password;
-import net.bestofcode.Facebook.persistence.LoginFormData;
+import net.bestofcode.Facebook.persistence.forms.LoginFormData;
 import org.springframework.stereotype.Service;
 import net.bestofcode.Facebook.model.profile.VerificationPassword;
 

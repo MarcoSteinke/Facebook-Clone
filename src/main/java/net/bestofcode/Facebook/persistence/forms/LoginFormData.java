@@ -1,4 +1,4 @@
-package net.bestofcode.Facebook.persistence;
+package net.bestofcode.Facebook.persistence.forms;
 
 import lombok.Getter;
 import lombok.Setter;

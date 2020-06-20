@@ -2,10 +2,8 @@ package net.bestofcode.Facebook.controller;
 
 import net.bestofcode.Facebook.model.User;
 import net.bestofcode.Facebook.model.profile.Email;
-import net.bestofcode.Facebook.model.profile.Password;
-import net.bestofcode.Facebook.model.profile.Username;
 import net.bestofcode.Facebook.model.profile.VerificationPassword;
-import net.bestofcode.Facebook.persistence.LoginFormData;
+import net.bestofcode.Facebook.persistence.forms.LoginFormData;
 import net.bestofcode.Facebook.service.DatabaseService;
 import net.bestofcode.Facebook.service.LoginService;
 import org.springframework.stereotype.Controller;

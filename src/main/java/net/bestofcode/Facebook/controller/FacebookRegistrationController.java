@@ -3,7 +3,7 @@ package net.bestofcode.Facebook.controller;
 import net.bestofcode.Facebook.model.profile.Email;
 import net.bestofcode.Facebook.model.profile.Password;
 import net.bestofcode.Facebook.model.profile.Username;
-import net.bestofcode.Facebook.persistence.RegistrationFormData;
+import net.bestofcode.Facebook.persistence.forms.RegistrationFormData;
 import net.bestofcode.Facebook.service.DatabaseService;
 import net.bestofcode.Facebook.service.RegistrationService;
 import org.springframework.stereotype.Controller;
