@@ -7,6 +7,7 @@ import net.bestofcode.Facebook.model.profile.Username;
 import net.bestofcode.Facebook.persistence.LoginFormData;
 import net.bestofcode.Facebook.persistence.RegistrationFormData;
 import net.bestofcode.Facebook.service.DatabaseService;
+import net.bestofcode.Facebook.service.LoginService;
 import net.bestofcode.Facebook.service.RegistrationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ class FacebookPersistenceTests {
 	DatabaseService databaseService;
 	@Autowired
 	RegistrationService registrationService;
+	@Autowired
+	LoginService loginService;
 
 	@Test
 	void contextLoads() {
@@ -30,10 +33,10 @@ class FacebookPersistenceTests {
 
 	@Test
 	void loadOneUserFromDB() {
-		User user = User.create("Marco", "foobar", "marco@gmail.com");
+		User user = User.create("Marco", "foobar", UUID.randomUUID(), "marco@gmail.com");
 		this.databaseService.insertIntoDB(user);
 
-		User loadedUser = this.databaseService.getFromDB(new Username("Marco"));
+		User loadedUser = this.databaseService.getUserByUsername(new Username("Marco"));
 
 		assertEquals("", user.getUsername().getValue(), loadedUser.getUsername().getValue());
 
@@ -42,23 +45,25 @@ class FacebookPersistenceTests {
 	@Test
 	void passwordIsAlwaysHashedTheSameWay() {
 		String initialPassword = "foobar";
-		User user = User.create("Marco", initialPassword, "marco@gmail.com");
+		Password password = new Password(initialPassword);
+		User user = User.create("Marco", initialPassword, password.getSalt(), "marco@gmail.com");
 		UUID salt = user.getPassword().getSalt();
 
-		Password password = new Password(initialPassword, salt);
+		Password comparePassword = new Password(initialPassword, salt);
 
-		assertEquals("", user.getPassword().getEncryptedPassword(), password.getEncryptedPassword());
+		assertEquals("", user.getPassword().getEncryptedPassword(), comparePassword.getEncryptedPassword());
 	}
 
 	@Test
 	void passwordIsPersistedAsEncryptedSaltedHash() {
 		String initialPassword = "foobar";
 		String initialName = "Marco";
-		User user = User.create(initialName, initialPassword, "marco@gmail.com");
+		Password password = new Password(initialPassword);
+		User user = User.create(initialName, initialPassword, password.getSalt(), "marco@gmail.com");
 		UUID salt = user.getPassword().getSalt();
 		this.databaseService.insertIntoDB(user);
 
-		User receivedUser = this.databaseService.getFromDB(new Username(initialName));
+		User receivedUser = this.databaseService.getUserByUsername(new Username(initialName));
 
 		assertEquals("", receivedUser.getPassword().getEncryptedPassword(), new Password(initialPassword, salt).getEncryptedPassword());
 	}
@@ -91,6 +96,24 @@ class FacebookPersistenceTests {
 		LoginFormData loginFormData = new LoginFormData(new Email("test@gmail.com"), new Password("password", uuid));
 
 		assertEquals("", loginFormData.isValid(), true);
+	}
+
+	@Test
+	void passwordVerificationIsValid() {
+		UUID salt = UUID.randomUUID();
+		String dummyPassword = "foobar";
+		Password password= new Password(dummyPassword, salt);
+		Email email = new Email("peter@gmail.com");
+		RegistrationFormData registrationFormData = new RegistrationFormData(new Username("Peter"), email, password);
+		registrationService.registerUser(registrationFormData);
+		LoginFormData loginFormData = new LoginFormData(email, password);
+
+		User registeredUser = this.loginService.loginUser(loginFormData);
+
+		System.out.println(registeredUser.getPassword() + ", " + password.getEncryptedPassword());
+
+		assertEquals("", registeredUser.getPassword().getEncryptedPassword(), password.getEncryptedPassword());
+
 	}
 
 

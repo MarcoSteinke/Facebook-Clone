@@ -1,14 +1,20 @@
 package net.bestofcode.Facebook.persistence;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.bestofcode.Facebook.model.profile.Email;
 import net.bestofcode.Facebook.model.profile.Password;
 import net.bestofcode.Facebook.model.profile.Username;
+import net.bestofcode.Facebook.model.profile.VerificationPassword;
 
+@Getter
 public class LoginFormData implements FormData {
 
     Username username;
     Email email;
     Password password;
+    @Setter
+    VerificationPassword verificationPassword;
 
     public LoginFormData(Email email, Password password) {
 
@@ -19,6 +25,7 @@ public class LoginFormData implements FormData {
             this.username = new Username("");
             this.email = email;
             this.password = password;
+            this.verificationPassword = new VerificationPassword(password.getEncryptedPassword());
         }
     }
 

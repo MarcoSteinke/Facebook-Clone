@@ -28,17 +28,17 @@ public class User {
 
     public static User create(Long id, String username, String password, UUID salt, String email, String forename, String familyname, String street, String city, int houseNumber) {
         Username username1 = new Username(username);
-        Password password1 = new Password(password, salt);
+        Password password1 = new VerificationPassword(password);
         Email email1 = new Email(email);
         PersonalInformation personalInformation = new PersonalInformation(forename, familyname);
         Address address = new Address(street, houseNumber, city);
 
+        password1.setSalt(salt);
         return new User(id, username1, password1, email1, personalInformation, address, salt, AccountState.REGISTERED);
     }
 
-    public static User create(String username, String password, String email) {
+    public static User create(String username, String password, UUID salt, String email) {
         Username username1 = new Username(username);
-        UUID salt =  UUID.randomUUID();
         Password password1 = new Password(password, salt);
         Email email1 = new Email(email);
 

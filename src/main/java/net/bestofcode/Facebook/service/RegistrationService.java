@@ -16,6 +16,7 @@ public class RegistrationService {
                 User.create(
                     registrationFormData.getUsername().getValue(),
                     registrationFormData.getPassword().getEncryptedPassword(),
+                    registrationFormData.getPassword().getSalt(),
                     registrationFormData.getEmail().getAddress())
                 )
         ) {

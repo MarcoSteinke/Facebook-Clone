@@ -1,6 +1,7 @@
 package net.bestofcode.Facebook.service;
 
 import net.bestofcode.Facebook.model.User;
+import net.bestofcode.Facebook.model.profile.Email;
 import net.bestofcode.Facebook.model.profile.Username;
 import net.bestofcode.Facebook.persistence.DTO.UserDTO;
 import net.bestofcode.Facebook.persistence.Repositories.UserRepository;
@@ -21,10 +22,17 @@ public class DatabaseService {
         this.userDTOMapper = new UserDTOMapper();
     }
 
-    public User getFromDB(Username username) {
+    public User getUserByUsername(Username username) {
         Optional<UserDTO> user = this.userRepository.findById(username.getValue());
 
         return this.userDTOMapper.mapUserDTOToUser(user.get());
+    }
+
+    public User getUserByEmail(Email email) {
+        UserDTO userDTO = this.userRepository.findByEmail(email.getAddress());
+        User user = this.userDTOMapper.mapUserDTOToUser(userDTO);
+
+        return user;
     }
 
     public boolean insertIntoDB(User user) {

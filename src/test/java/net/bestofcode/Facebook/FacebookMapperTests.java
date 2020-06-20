@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.UUID;
+
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @SpringBootTest
@@ -24,7 +26,7 @@ public class FacebookMapperTests {
         String initialPassword = "foobar";
         String initialUsername = "John";
         String initialEmail = "john@gmail.com";
-        User user = User.create(initialUsername, initialPassword, initialEmail);
+        User user = User.create(initialUsername, initialPassword, UUID.randomUUID(), initialEmail);
         UserDTOMapper userDTOMapper = new UserDTOMapper();
 
         UserDTO userDTO = userDTOMapper.mapUserToUserDTO(user);
