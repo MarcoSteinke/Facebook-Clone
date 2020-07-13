@@ -33,7 +33,7 @@ public class FacebookRegistrationController {
         if(!registrationSuccess)
             return "redirect:/error";
 
-        System.out.println(username + ", " + password + ", " + email);
+        System.out.println(username + ", " + new Password(password).getEncryptedPassword() + ", " + email);
         return "redirect:/registration/success";
     }
 

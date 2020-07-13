@@ -1,4 +1,4 @@
-package net.bestofcode.Facebook.model.profile;
+package net.bestofcode.Facebook.model.profile.accountState;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

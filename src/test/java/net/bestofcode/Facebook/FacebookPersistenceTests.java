@@ -45,9 +45,10 @@ class FacebookPersistenceTests {
 	@Test
 	void passwordIsAlwaysHashedTheSameWay() {
 		String initialPassword = "foobar";
-		Password password = new Password(initialPassword);
-		User user = User.create("Marco", initialPassword, password.getSalt(), "marco@gmail.com");
-		UUID salt = user.getPassword().getSalt();
+		UUID salt = UUID.randomUUID();
+		Password password = new Password(initialPassword, salt);
+		User user = User.create("Marco", password.getEncryptedPassword(), salt, "marco@gmail.com");
+		salt = user.getPassword().getSalt();
 
 		Password comparePassword = new Password(initialPassword, salt);
 
@@ -65,7 +66,7 @@ class FacebookPersistenceTests {
 
 		User receivedUser = this.databaseService.getUserByUsername(new Username(initialName));
 
-		assertEquals("", receivedUser.getPassword().getEncryptedPassword(), new Password(initialPassword, salt).getEncryptedPassword());
+		assertEquals("", receivedUser.getPassword().getEncryptedPassword(), user.getPassword().getEncryptedPassword());
 	}
 
 	@Test

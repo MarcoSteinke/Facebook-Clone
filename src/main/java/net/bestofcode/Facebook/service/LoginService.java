@@ -24,9 +24,9 @@ public class LoginService {
                 return user;
             }
         } else {
-            return null;
+            return User.generateErrorUser(loginFormData.getUsername());
         }
-        return null;
+        return User.generateErrorUser(loginFormData.getUsername());
     }
 
 }

@@ -30,9 +30,7 @@ public class DatabaseService {
 
     public User getUserByEmail(Email email) {
         UserDTO userDTO = this.userRepository.findByEmail(email.getAddress());
-        User user = this.userDTOMapper.mapUserDTOToUser(userDTO);
-
-        return user;
+        return this.userDTOMapper.mapUserDTOToUser(userDTO);
     }
 
     public boolean insertIntoDB(User user) {
